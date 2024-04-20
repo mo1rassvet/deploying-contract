@@ -1,0 +1,11 @@
+function transferTokens(address _from, address _to, uint256 _amount) public {
+    require(_from != address(0), "Invalid sender address");
+    require(_to != address(0), "Invalid recipient address");
+    require(_amount > 0, "Transfer amount must be greater than zero");
+    require(balanceOf[_from] >= _amount, "Insufficient balance");
+
+    balanceOf[_from] -= _amount;
+    balanceOf[_to] += _amount;
+
+    emit Transfer(_from, _to, _amount);
+}
